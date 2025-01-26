@@ -9,7 +9,7 @@ class Task(models.Model):
     date = models.DateField(auto_now_add=True)
     deadline = models.DateField(blank=True, null=True)
     is_done = models.BooleanField(default=False)
-    tags = models.ManyToManyField('Tag', related_name='tasks', blank=True)
+    tags = models.ManyToManyField("Tag", related_name="tasks", blank=True)
     objects = models.Manager()
 
     def __str__(self):
@@ -26,9 +26,11 @@ class Task(models.Model):
             task = Task.objects.create(
                 content=fake.text(max_nb_chars=50),
                 deadline=now + datetime.timedelta(days=fake.random_int(min=1, max=10)),
-                is_done=fake.boolean()
+                is_done=fake.boolean(),
             )
-            task.tags.set(fake.random_elements(tags, length=fake.random_int(min=1, max=len(tags))))
+            task.tags.set(
+                fake.random_elements(tags, length=fake.random_int(min=1, max=len(tags)))
+            )
 
 
 class Tag(models.Model):

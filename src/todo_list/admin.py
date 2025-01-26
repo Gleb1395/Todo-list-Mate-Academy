@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from todo_list.models import Task, Tag
+from todo_list.models import Tag, Task
 
 
 @admin.register(Task)
